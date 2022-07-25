@@ -233,7 +233,11 @@ func (p *Process) Addr(x Object) core.Address {
 
 // Size returns the size of x in bytes.
 func (p *Process) Size(x Object) int64 {
-	return p.findHeapInfo(core.Address(x)).size
+	h := p.findHeapInfo(core.Address(x))
+	if h == nil {
+		return 0
+	}
+	return h.size
 }
 
 // Type returns the type and repeat count for the object x.
