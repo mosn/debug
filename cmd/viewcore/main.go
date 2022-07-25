@@ -139,6 +139,13 @@ var (
 		Args:  cobra.RangeArgs(1, 2),
 		Run:   runRead,
 	}
+
+	cmdObjref = &cobra.Command{
+		Use:   "objref <output_filename>",
+		Short: "dump object reference",
+		Args:  cobra.ExactArgs(1),
+		Run:   runObjref,
+	}
 )
 
 type config struct {
@@ -175,7 +182,8 @@ func init() {
 		cmdObjgraph,
 		cmdReachable,
 		cmdHTML,
-		cmdRead)
+		cmdRead,
+		cmdObjref)
 
 	// customize the usage template - viewcore's command structure
 	// is not typical of cobra-based command line tool.
